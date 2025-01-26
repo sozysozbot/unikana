@@ -63,6 +63,8 @@ table.keyboard td.no-entry:active {
     justify-content: center;
     font-size: 45px;
     box-sizing: border-box;
+    background-image: url("./empty-char-cell.svg");
+    background-size: contain;
 }
 
 .grid-unicode-cell {
