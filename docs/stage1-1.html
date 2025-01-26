@@ -7,7 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script>
-        function insertAtCursor(inputElement, textToInsert) {
+        // get the currently highlighted input element
+        function getHighlightedInput() {
+            const v = document.querySelector("input:focus");
+            if (!v) {
+                return document.getElementById("codepoint0");
+            }
+            return v;
+        }
+
+        function insertAtCursor(textToInsert) {
+            const inputElement = getHighlightedInput();
             // Get the current text of the input element
             const currentValue = inputElement.value;
             // Get the start and end positions of the cursor
@@ -18,7 +28,7 @@
             // Move the cursor after the inserted text
             inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
 
-            clickSound();
+            sync();
         }
 
         function beep() {
@@ -87,6 +97,7 @@
                     char_div.classList.remove("unfilled-char-cell");
                 }
             }
+            clickSound();
         }
     </script>
 </head>
@@ -109,13 +120,13 @@
         <tr>
             <td class="no-entry" onclick="beep()">⛔</td>
             <td class="no-entry" onclick="beep()">⛔</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'A')">A</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'B')">B</td>
+            <td onclick="insertAtCursor('A')">A</td>
+            <td onclick="insertAtCursor('B')">B</td>
         </tr>
         <tr>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'C')">C</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'D')">D</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'E')">E</td>
+            <td onclick="insertAtCursor('C')">C</td>
+            <td onclick="insertAtCursor('D')">D</td>
+            <td onclick="insertAtCursor('E')">E</td>
             <td class="no-entry" onclick="beep()">⛔</td>
         </tr>
     </table>
@@ -140,7 +151,6 @@
         </div>
     </div>
 
-    <input type="text" id="search-bar" value="" accesskey="f" autocapitalize="none" autocomplete="off">
 
     <table>
         <tr>
