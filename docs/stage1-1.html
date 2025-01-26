@@ -6,6 +6,7 @@
     <title>ユニかな！　ステージ 1-1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <script src="audio.js"></script>
     <script>
         // get the currently highlighted input element
         function getHighlightedInput() {
@@ -18,75 +19,28 @@
 
         function insertAtCursor(textToInsert) {
             const inputElement = getHighlightedInput();
-            // Get the current text of the input element
             const currentValue = inputElement.value;
-            // Get the start and end positions of the cursor
             const start = inputElement.selectionStart ?? 0;
             const end = inputElement.selectionEnd ?? 0;
-            // Insert the text at the cursor position
             inputElement.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
-            // Move the cursor after the inserted text
             inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
-
             sync();
         }
 
-        function beep() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            oscillator.type = "sawtooth";
-            oscillator.frequency.setValueAtTime(98, audioContext.currentTime); // Pitch: G2
-            const gainNode = audioContext.createGain();
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.2);
-        }
-
-        function clickSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-            const bufferSize = audioContext.sampleRate * 0.05 /* seconds */;
-            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                data[i] = Math.random() * 2 - 1;
-            }
-
-            const noise = audioContext.createBufferSource();
-            noise.buffer = buffer;
-
-            const highPass = audioContext.createBiquadFilter();
-            highPass.type = "highpass";
-            highPass.frequency.setValueAtTime(500 /*Hz*/, audioContext.currentTime);
-
-            const lowPass = audioContext.createBiquadFilter();
-            lowPass.type = "lowpass";
-            lowPass.frequency.setValueAtTime(1500 /*Hz*/, audioContext.currentTime);
-
-            const gainNode = audioContext.createGain();
-            gainNode.gain.setValueAtTime(0.9, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05/* seconds; decay*/);
-
-            noise.connect(highPass);
-            highPass.connect(lowPass);
-            lowPass.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            noise.start();
-        }
-
         function sync() {
+            let success = true;
             for (let i = 0; i < 2; i++) {
                 let codepoint_input = document.getElementById("codepoint" + i).value;
                 const char_div = document.getElementById("char" + i);
 
                 // Delete offending characters
-                if (!document.getElementById("codepoint" + i).checkValidity()) { 
+                if (!document.getElementById("codepoint" + i).checkValidity()) {
                     codepoint_input = "";
                     document.getElementById("codepoint" + i).value = "";
-                    beep();
+                    if (success) {
+                        beepSound();
+                        success = false;
+                    }
                 }
 
                 if (codepoint_input === "") {
@@ -97,7 +51,10 @@
                     char_div.classList.remove("unfilled-char-cell");
                 }
             }
-            clickSound();
+
+            if (success) {
+                clickSound();
+            }
         }
     </script>
 </head>
@@ -106,20 +63,20 @@
 
     <table class="keyboard">
         <tr>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beep()">⛔</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
             <td onclick="insertAtCursor('A')">A</td>
             <td onclick="insertAtCursor('B')">B</td>
         </tr>
@@ -127,7 +84,7 @@
             <td onclick="insertAtCursor('C')">C</td>
             <td onclick="insertAtCursor('D')">D</td>
             <td onclick="insertAtCursor('E')">E</td>
-            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
         </tr>
     </table>
 
