@@ -67,6 +67,10 @@ table.keyboard td.no-entry:active {
     background-size: contain;
 }
 
+.grid-char-cell.unfilled-char-cell {
+    background-image: url("./unfilled-char-cell.svg");
+}
+
 .grid-unicode-cell {
     width: 62px;
     height: 24px;

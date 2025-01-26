@@ -66,6 +66,28 @@
 
             noise.start();
         }
+
+        function sync() {
+            for (let i = 0; i < 2; i++) {
+                let codepoint_input = document.getElementById("codepoint" + i).value;
+                const char_div = document.getElementById("char" + i);
+
+                // Delete offending characters
+                if (!document.getElementById("codepoint" + i).checkValidity()) { 
+                    codepoint_input = "";
+                    document.getElementById("codepoint" + i).value = "";
+                    beep();
+                }
+
+                if (codepoint_input === "") {
+                    char_div.textContent = "";
+                    char_div.classList.add("unfilled-char-cell");
+                } else {
+                    char_div.textContent = String.fromCodePoint(parseInt("306" + codepoint_input, 16));
+                    char_div.classList.remove("unfilled-char-cell");
+                }
+            }
+        }
     </script>
 </head>
 
@@ -99,19 +121,21 @@
     </table>
 
     <div class="outer-container">
-        <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img src="logo.png" width="100" alt="ユニかな！"></h1>
+        <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
+                src="logo.png" width="100" alt="ユニかな！"></h1>
         <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 1-1</h2>
 
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"><ruby>七<rt>なな</rt>
             </ruby></div>
         <div class="input-container">
             <div class="grid" style="height: 80px; margin: 50px auto 0 auto; ">
-                <div class="grid-char-cell">な</div>
-                <div class="grid-char-cell">な</div>
+                <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
-                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]" autofocus></div>
+                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
+                        oninput="sync()"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
-                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]"></div>
+                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1" oninput="sync()"></div>
             </div>
         </div>
     </div>
