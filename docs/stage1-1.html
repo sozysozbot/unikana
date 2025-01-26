@@ -70,8 +70,6 @@
 </head>
 
 <body>
-    <h1><img src="logo.png" width="300" alt="ユニかな！"></h1>
-    <h2>ステージ 1-1</h2>
 
     <table class="keyboard">
         <tr>
@@ -100,10 +98,22 @@
         </tr>
     </table>
 
-    <div style=" border: 1px solid black; height: 200px; width: 500px; margin: 30px;">
-        <div id="challenge-text" style="text-align: center; font-size: 40px;"><ruby>七<rt>なな</rt></ruby></div>
+    <div class="outer-container">
+        <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img src="logo.png" width="100" alt="ユニかな！"></h1>
+        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 1-1</h2>
 
-        <img src="nana.png" height="80" style="display: block; margin: 40px auto 0 auto;" />
+        <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"><ruby>七<rt>なな</rt>
+            </ruby></div>
+        <div class="input-container">
+            <div class="grid" style="height: 80px; margin: 50px auto 0 auto; ">
+                <div class="grid-char-cell">な</div>
+                <div class="grid-char-cell">な</div>
+                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
+                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]" autofocus></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
+                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]"></div>
+            </div>
+        </div>
     </div>
 
     <input type="text" id="search-bar" value="" accesskey="f" autocapitalize="none" autocomplete="off">

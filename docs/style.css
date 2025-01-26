@@ -37,3 +37,57 @@ table.keyboard td.no-entry:active {
     background-color: #e1a093;
     color: #5b5b5b;
 }
+
+.outer-container {
+    border: 1px solid black;
+    height: 220px;
+    width: 500px;
+    margin: 30px;
+    position: relative;
+    transform: translateX(400px) scale(160%);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 62px);
+    grid-template-rows: repeat(2, 62px);
+    gap: 0;
+}
+
+.grid-char-cell {
+    width: 62px;
+    height: 62px;
+    border: 1px solid #93cde1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    box-sizing: border-box;
+}
+
+.grid-unicode-cell {
+    width: 62px;
+    height: 24px;
+    border: 1px solid #93cde1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.immutable {
+    font-size: 80%;
+    color: #666;
+}
+
+.single-digit-codepoint {
+    margin: 2px;
+    max-width: 1em;
+    text-transform: uppercase;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+}
