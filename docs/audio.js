@@ -53,3 +53,20 @@ function playSuccessSound() {
         oscillator.stop(audioContext.currentTime + i * duration + duration);
     }
 }
+let isBGMPlaying = false;
+function startBGM() {
+    const bgm = document.getElementById("bgm");
+    isBGMPlaying = true;
+    bgm.play();
+}
+function stopBGM() {
+    const bgm = document.getElementById("bgm");
+    bgm.pause();
+    isBGMPlaying = false;
+    bgm.currentTime = 0; // 再生位置をリセット
+}
+function startBGMIfNotPlaying() {
+    if (!isBGMPlaying) {
+        startBGM();
+    }
+}

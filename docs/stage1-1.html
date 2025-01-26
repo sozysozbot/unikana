@@ -18,26 +18,39 @@
     <button onclick="stopBGM()">Stop BGM</button>
 
     <script>
-        let isBGMPlaying = false;
-        function startBGM() {
-            const bgm = document.getElementById("bgm");
-            isBGMPlaying = true;
-            bgm.play();
-        }
-
-        function stopBGM() {
-            const bgm = document.getElementById("bgm");
-            bgm.pause();
-            isBGMPlaying = false;
-            bgm.currentTime = 0; // 再生位置をリセット
-        }
-
-        function startBGMIfNotPlaying() {
-            if (!isBGMPlaying) {
-                const bgm = document.getElementById("bgm");
-                startBGM();
-            }
-        }
+        const stageChallengeTexts = [
+            { "length": 2, "challenge": "{七|なな}", "commentary": "数の1つ" },
+            { "length": 2, "challenge": "{何|なに}", "commentary": "疑問詞" },
+            { "length": 2, "challenge": "{煮|に}な", "commentary": "グツグツの必要" },
+            { "length": 2, "challenge": "{似|に}ぬ", "commentary": "見た目が異なる" },
+            { "length": 2, "challenge": "{布|ぬの}", "commentary": "着ましょう" },
+            { "length": 2, "challenge": "{寝|ね}ぬ", "commentary": "徹夜" },
+            { "length": 2, "challenge": "{寝|ね}な", "commentary": "明日は朝早い" },
+            { "length": 2, "challenge": "{菜|な}の", "commentary": "of vegetables" },
+            { "length": 2, "challenge": "{野|の}に", "commentary": "in the field" },
+            { "length": 3, "challenge": "{何|なに}に", "commentary": "疑問" },
+            { "length": 3, "challenge": "{布|ぬの}の", "commentary": "" },
+            { "length": 3, "challenge": "なのに", "commentary": "逆接" },
+            { "length": 3, "challenge": "{七|なな}ね", "commentary": "" },
+            { "length": 3, "challenge": "{野|の}に{菜|な}", "commentary": "豊かな自然" },
+            { "length": 3, "challenge": "{煮|に}ぬ{菜|な}", "commentary": "サラダとか" },
+            { "length": 4, "challenge": "{名|な}なのに", "commentary": "実名なんだけど" },
+            { "length": 4, "challenge": "{寝|ね}ぬのに", "commentary": "昼間に寝すぎた" },
+            { "length": 4, "challenge": "{根|ね}の{菜|な}ね", "commentary": "ゴボウとかね" },
+            { "length": 4, "challenge": "{似|に}ぬのに", "commentary": "完全に別物だよ" },
+            { "length": 4, "challenge": "{野|の}に{寝|ね}ぬ", "commentary": "ベッドで寝よう" },
+            { "length": 4, "challenge": "{奈|な}{々|な}なの", "commentary": "自己紹介" },
+            { "length": 5, "challenge": "{布|ぬの}に{似|に}ぬ", "commentary": "不織布マスク" },
+            { "length": 5, "challenge": "{七|なな}なのに", "commentary": "6じゃないのに" },
+            { "length": 5, "challenge": "{寝|ね}ぬのにな", "commentary": "どうせ徹夜よ" },
+            { "length": 5, "challenge": "{奈|な}{々|な}のなの", "commentary": "私のお人形！" },
+            { "length": 5, "challenge": "{寧|ね}{々|ね}の{布|ぬの}", "commentary": "私のお洋服" },
+            { "length": 6, "challenge": "{何|なに}{何|なに}{何|なに}", "commentary": "どうしたの" },
+            { "length": 6, "challenge": "{布|ぬの}なのにね", "commentary": "紙じゃないのに" },
+            { "length": 6, "challenge": "{菜|な}に{似|に}ぬ{布|ぬの}", "commentary": "肉に似てる" },
+            { "length": 7, "challenge": "{煮|に}ぬ{根|ね}なのにね", "commentary": "生の方が美味い" },
+            { "length": 8, "challenge": "{奈|な}{々|な}の{布|ぬの}なのに", "commentary": "横取りやめて" },
+        ];
     </script>
 
     <table class="keyboard">
@@ -109,5 +122,6 @@
     </table>
 
     <small>作者: <a href="https://twitter.com/hsjoihs">hsjoihs</a><br>
-        BGM は <a href="https://instachord.com/">InstaChord</a> および <a href="https://www.ah-soft.com/synth-v/teto/">Synthesizer V Studio Pro の重音テト</a>で製作しました</small>
+        BGM は <a href="https://instachord.com/">InstaChord</a> および <a
+            href="https://www.ah-soft.com/synth-v/teto/">Synthesizer V Studio Pro の重音テト</a>で製作しました</small>
 </body>
