@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="audio.js"></script>
     <script>
+        let cursoredBox = 0;
+
         // get the currently highlighted input element
         function getHighlightedInput() {
             const v = document.querySelector("input:focus");
             if (!v) {
-                return document.getElementById("codepoint0");
+                return document.getElementById("codepoint" + cursoredBox);
             }
             return v;
         }
@@ -24,6 +26,14 @@
             const end = inputElement.selectionEnd ?? 0;
             inputElement.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
             inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
+
+            // If this completes the codepoint, move to the next input
+            if (inputElement.value.length === 1 /*TODO*/) {
+                cursoredBox = (cursoredBox + 1) % 2 /* TODO */;
+                const nextInput = document.getElementById("codepoint" + cursoredBox);
+                nextInput.focus();
+                nextInput.setSelectionRange(0, 0);
+            }
 
             const previousValue = currentValue;
             sync(previousValue);
@@ -131,5 +141,6 @@
             <td>ぬ</td>
             <td>ね</td>
             <td>の</td>
+        </tr>
     </table>
 </body>
