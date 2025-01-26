@@ -4,11 +4,59 @@
 
 <head>
     <title>ユニかな！　ステージ 1-1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function insertAtCursor(inputElement, textToInsert) {
+            // Get the current text of the input element
+            const currentValue = inputElement.value;
+            // Get the start and end positions of the cursor
+            const start = inputElement.selectionStart ?? 0;
+            const end = inputElement.selectionEnd ?? 0;
+            // Insert the text at the cursor position
+            inputElement.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
+            // Move the cursor after the inserted text
+            inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
+            // Since the `oninput` event is not triggered, I have to manually run it
+            display_result();
+        }
+    </script>
 </head>
 
 <body>
     <h1><img src="logo.png" width="600" alt="ユニかな！"></h1>
     <h2>ステージ 1-1</h2>
+
+    <table class="keyboard">
+        <tr>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '0')">0</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '1')">1</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '2')">2</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '3')">3</td>
+        </tr>
+        <tr>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '4')">4</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '5')">5</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '6')">6</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '7')">7</td>
+        </tr>
+        <tr>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '8')">8</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), '9')">9</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'A')">A</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'B')">B</td>
+        </tr>
+        <tr>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'C')">C</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'D')">D</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'E')">E</td>
+            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'F')">F</td>
+    </table>
+
+    <p></p>
+
+    <input type="text" id="search-bar" value="" accesskey="f" autocapitalize="none" autocomplete="off">
+
     <table>
         <tr>
             <td>A</td>
