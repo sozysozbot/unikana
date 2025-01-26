@@ -32,3 +32,8 @@ table.keyboard td:active {
     background-color: #93cde1;
     color: #5b5b5b;
 }
+
+table.keyboard td.no-entry:active {
+    background-color: #e1a093;
+    color: #5b5b5b;
+}

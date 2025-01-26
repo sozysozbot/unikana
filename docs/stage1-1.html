@@ -17,32 +17,43 @@
             inputElement.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
             // Move the cursor after the inserted text
             inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
-            // Since the `oninput` event is not triggered, I have to manually run it
-            display_result();
+        }
+
+        function beep(length) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            oscillator.type = "sawtooth"; 
+            oscillator.frequency.setValueAtTime(98, audioContext.currentTime); // Pitch: G2
+            const gainNode = audioContext.createGain();
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); 
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + length); 
         }
     </script>
 </head>
 
 <body>
-    <h1><img src="logo.png" width="600" alt="ユニかな！"></h1>
+    <h1><img src="logo.png" width="300" alt="ユニかな！"></h1>
     <h2>ステージ 1-1</h2>
 
     <table class="keyboard">
         <tr>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '0')">0</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '1')">1</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '2')">2</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '3')">3</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
         </tr>
         <tr>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '4')">4</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '5')">5</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '6')">6</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '7')">7</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
         </tr>
         <tr>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '8')">8</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), '9')">9</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'A')">A</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'B')">B</td>
         </tr>
@@ -50,7 +61,8 @@
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'C')">C</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'D')">D</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'E')">E</td>
-            <td onclick="insertAtCursor(document.getElementById('search-bar'), 'F')">F</td>
+            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+        </tr>
     </table>
 
     <p></p>
