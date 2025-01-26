@@ -101,13 +101,50 @@ function syncAll_triggered_from_custom_keyboard(previousValue) {
         checkSolution();
     }
 }
+let stageIndex = 0;
+let __stageChallengeTexts = [];
+let targetText = "";
 function checkSolution() {
-    const char0 = document.getElementById("char0").textContent;
-    const char1 = document.getElementById("char1").textContent;
-    if (char0 === "な" && char1 === "な") {
+    const char0 = document.getElementById("char0").textContent ?? "";
+    const char1 = document.getElementById("char1").textContent ?? "";
+    if (char0 + char1 === targetText) {
         document.getElementById("judgement_when_completed").textContent = "✅";
         setTimeout(() => {
             playSuccessSound();
+            setTimeout(() => {
+                nextStage();
+            }, 500);
         }, 150);
+    }
+}
+function initializeStageChallenge(stageChallengeTexts) {
+    const stageChallengeElement = document.getElementById("challenge-text");
+    stageChallengeElement.innerHTML = convertStageToRuby(stageChallengeTexts[0].challenge);
+    targetText = extractKanaText(stageChallengeTexts[0].challenge);
+    __stageChallengeTexts = stageChallengeTexts;
+}
+function nextStage() {
+    stageIndex++;
+    if (stageIndex >= __stageChallengeTexts.length) {
+        alert("おめでとうございます！全ステージクリアです！");
+        throw new Error("全ステージクリア");
+    }
+    // Currently, limit the stage so that the length is always 2
+    if (__stageChallengeTexts[stageIndex].length !== 2) {
+        alert("おめでとうございます！全ステージクリアです！");
+        throw new Error("全ステージクリア");
+    }
+    // Update the stage challenge text
+    const stageChallengeElement = document.getElementById("challenge-text");
+    stageChallengeElement.innerHTML = convertStageToRuby(__stageChallengeTexts[stageIndex].challenge);
+    targetText = extractKanaText(__stageChallengeTexts[stageIndex].challenge);
+    document.getElementById("judgement_when_completed").textContent = "";
+    // Clear the input boxes
+    for (let i = 0; i < 2; i++) {
+        const codepointInput = document.getElementById("codepoint" + i);
+        codepointInput.value = "";
+        const char_div = document.getElementById("char" + i);
+        char_div.textContent = "";
+        char_div.classList.add("unfilled-char-cell");
     }
 }

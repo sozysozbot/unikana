@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="audio.js"></script>
-    <script src="main.js"></script>
+    <script src="parse_stage.js"></script>
+    <script src="ui.js"></script>
 </head>
 
-<body>
+<body onload="initializeStageChallenge(stageChallengeTexts)">
 
     <audio id="bgm" src="stage1-bgm.wav" loop></audio>
 
@@ -87,8 +88,7 @@
         <span id="judgement_when_completed"
             style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
 
-        <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"><ruby>七<rt>なな</rt>
-            </ruby></div>
+        <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div class="input-container">
             <div class="grid" style="height: 80px; margin: 50px auto 0 auto; ">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
