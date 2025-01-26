@@ -45,10 +45,10 @@ function playClickSound() {
 }
 
 function playSuccessSound() {
-    const audioContext = new window.AudioContext ();
+    const audioContext = new window.AudioContext();
 
     const frequencies = [1976, 1568]; // B6, G6
-    const duration = 0.1; 
+    const duration = 0.1;
     const repetitions = 3;
 
     for (let i = 0; i < repetitions * frequencies.length; i++) {

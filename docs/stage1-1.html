@@ -12,6 +12,34 @@
 
 <body>
 
+    <audio id="bgm" src="stage1-bgm.wav" loop></audio>
+
+    <button onclick="startBGM()">Start BGM</button>
+    <button onclick="stopBGM()">Stop BGM</button>
+
+    <script>
+        let isBGMPlaying = false;
+        function startBGM() {
+            const bgm = document.getElementById("bgm");
+            isBGMPlaying = true;
+            bgm.play();
+        }
+
+        function stopBGM() {
+            const bgm = document.getElementById("bgm");
+            bgm.pause();
+            isBGMPlaying = false;
+            bgm.currentTime = 0; // 再生位置をリセット
+        }
+
+        function startBGMIfNotPlaying() {
+            if (!isBGMPlaying) {
+                const bgm = document.getElementById("bgm");
+                startBGM();
+            }
+        }
+    </script>
+
     <table class="keyboard">
         <tr>
             <td class="no-entry" onclick="beepSound()">⛔</td>
@@ -20,22 +48,22 @@
             <td class="no-entry" onclick="beepSound()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
-            <td onclick="insertAtCursor('A')">A</td>
-            <td onclick="insertAtCursor('B')">B</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('A')">A</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('B')">B</td>
         </tr>
         <tr>
-            <td onclick="insertAtCursor('C')">C</td>
-            <td onclick="insertAtCursor('D')">D</td>
-            <td onclick="insertAtCursor('E')">E</td>
-            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('C')">C</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('D')">D</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('E')">E</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
         </tr>
     </table>
 
@@ -43,7 +71,8 @@
         <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
                 src="logo.png" width="100" alt="ユニかな！"></h1>
         <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 1-1</h2>
-        <span id="judgement_when_completed" style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
+        <span id="judgement_when_completed"
+            style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
 
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"><ruby>七<rt>なな</rt>
             </ruby></div>
@@ -53,10 +82,10 @@
                 <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
-                        oninput="sync_triggered_from_textinput(0)"></div>
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1"
-                        oninput="sync_triggered_from_textinput(1)"></div>
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
             </div>
         </div>
     </div>
@@ -78,4 +107,7 @@
             <td>の</td>
         </tr>
     </table>
+
+    <small>作者: <a href="https://twitter.com/hsjoihs">hsjoihs</a><br>
+        BGM は <a href="https://instachord.com/">InstaChord</a> および <a href="https://www.ah-soft.com/synth-v/teto/">Synthesizer V Studio Pro の重音テト</a>で製作しました</small>
 </body>
