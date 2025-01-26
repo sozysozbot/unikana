@@ -19,7 +19,7 @@
             inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
         }
 
-        function beep(length) {
+        function beep() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
             oscillator.type = "sawtooth"; 
@@ -29,7 +29,7 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
             oscillator.start();
-            oscillator.stop(audioContext.currentTime + length); 
+            oscillator.stop(audioContext.currentTime + 0.2); 
         }
     </script>
 </head>
@@ -40,20 +40,20 @@
 
     <table class="keyboard">
         <tr>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
         </tr>
         <tr>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'A')">A</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'B')">B</td>
         </tr>
@@ -61,7 +61,7 @@
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'C')">C</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'D')">D</td>
             <td onclick="insertAtCursor(document.getElementById('search-bar'), 'E')">E</td>
-            <td class="no-entry" onclick="beep(0.2)">⛔</td>
+            <td class="no-entry" onclick="beep()">⛔</td>
         </tr>
     </table>
 
