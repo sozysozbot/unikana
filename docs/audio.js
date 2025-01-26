@@ -1,5 +1,5 @@
 "use strict";
-function beepSound() {
+function playBeepSound() {
     const audioContext = new window.AudioContext();
     const oscillator = audioContext.createOscillator();
     oscillator.type = "sawtooth";
@@ -11,7 +11,7 @@ function beepSound() {
     oscillator.start();
     oscillator.stop(audioContext.currentTime + 0.2);
 }
-function clickSound() {
+function playClickSound() {
     const audioContext = new window.AudioContext();
     const bufferSize = audioContext.sampleRate * 0.05 /* seconds */;
     const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
@@ -35,4 +35,21 @@ function clickSound() {
     lowPass.connect(gainNode);
     gainNode.connect(audioContext.destination);
     noise.start();
+}
+function playSuccessSound() {
+    const audioContext = new window.AudioContext();
+    const frequencies = [1976, 1568]; // B6, G6
+    const duration = 0.1;
+    const repetitions = 3;
+    for (let i = 0; i < repetitions * frequencies.length; i++) {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        oscillator.frequency.setValueAtTime(frequencies[i % frequencies.length], audioContext.currentTime + i * duration);
+        gainNode.gain.setValueAtTime(0.9, audioContext.currentTime + i * duration);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * duration + duration);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.start(audioContext.currentTime + i * duration);
+        oscillator.stop(audioContext.currentTime + i * duration + duration);
+    }
 }
