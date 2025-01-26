@@ -57,7 +57,7 @@
 
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(0.9, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05/* seconds; decay*/); 
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05/* seconds; decay*/);
 
             noise.connect(highPass);
             highPass.connect(lowPass);
@@ -100,7 +100,11 @@
         </tr>
     </table>
 
-    <p></p>
+    <div style=" border: 1px solid black; height: 200px; width: 500px; margin: 30px;">
+        <div id="challenge-text" style="text-align: center; font-size: 40px;"><ruby>七<rt>なな</rt></ruby></div>
+
+        <img src="nana.png" height="80" style="display: block; margin: 40px auto 0 auto;" />
+    </div>
 
     <input type="text" id="search-bar" value="" accesskey="f" autocapitalize="none" autocomplete="off">
 
