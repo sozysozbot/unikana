@@ -1,17 +1,19 @@
-let cursoredBox = 0;
+const UI_STATE = { cursoredBox: 0 };
+const STAGE_STATE: { stageIndex: number, stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], targetText: string, nextStagePageName: string }
+    = { stageIndex: 0, stageChallengeTexts: [], targetText: "", nextStagePageName: "" };
 
 // get the currently highlighted input element
 function getHighlightedInput(): HTMLInputElement {
     const v = document.querySelector("input:focus") as HTMLInputElement;
     if (!v) {
-        return document.getElementById("codepoint" + cursoredBox)! as HTMLInputElement;
+        return document.getElementById("codepoint" + UI_STATE.cursoredBox)! as HTMLInputElement;
     }
     return v;
 }
 
 function moveFocusToNextInput() {
-    cursoredBox = (cursoredBox + 1) % 2 /* TODO */;
-    const nextInput = document.getElementById("codepoint" + cursoredBox)! as HTMLInputElement;
+    UI_STATE.cursoredBox = (UI_STATE.cursoredBox + 1) % 2 /* TODO */;
+    const nextInput = document.getElementById("codepoint" + UI_STATE.cursoredBox)! as HTMLInputElement;
     nextInput.focus();
     nextInput.setSelectionRange(0, 0);
 }
@@ -114,16 +116,12 @@ function syncAll_triggered_from_custom_keyboard(previousValue: string) {
     }
 }
 
-let stageIndex = 0;
-let __stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[] = [];
-let targetText: string = "";
-let nextStagePageName: string = "";
 
 function checkSolution() {
     const char0 = document.getElementById("char0")!.textContent ?? "";
     const char1 = document.getElementById("char1")!.textContent ?? "";
 
-    if (char0 + char1 === targetText) {
+    if (char0 + char1 === STAGE_STATE.targetText) {
         document.getElementById("judgement_when_completed")!.textContent = "✅";
         setTimeout(() => {
             playSuccessSound();
@@ -135,25 +133,25 @@ function checkSolution() {
 }
 
 function initializeStageChallenge(o: { stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], nextStagePageName: string }) {
-    nextStagePageName = o.nextStagePageName;
+    STAGE_STATE.nextStagePageName = o.nextStagePageName;
     const stageChallengeElement = document.getElementById("challenge-text")!;
     stageChallengeElement.innerHTML = convertStageToRuby(o.stageChallengeTexts[0].challenge);
-    targetText = extractKanaText(o.stageChallengeTexts[0].challenge);
-    __stageChallengeTexts = o.stageChallengeTexts;
+    STAGE_STATE.targetText = extractKanaText(o.stageChallengeTexts[0].challenge);
+    STAGE_STATE.stageChallengeTexts = o.stageChallengeTexts;
 }
 
 function nextStage() {
-    stageIndex++;
-    if (stageIndex >= __stageChallengeTexts.length) {
+    STAGE_STATE.stageIndex++;
+    if (STAGE_STATE.stageIndex >= STAGE_STATE.stageChallengeTexts.length) {
         alert("ステージクリア！");
-        location.href = `./${nextStagePageName}.html`;
+        location.href = `./${STAGE_STATE.nextStagePageName}.html`;
         throw new Error("ステージクリア");
     }
 
     // Update the stage challenge text
     const stageChallengeElement = document.getElementById("challenge-text")!;
-    stageChallengeElement.innerHTML = convertStageToRuby(__stageChallengeTexts[stageIndex].challenge);
-    targetText = extractKanaText(__stageChallengeTexts[stageIndex].challenge);
+    stageChallengeElement.innerHTML = convertStageToRuby(STAGE_STATE.stageChallengeTexts[STAGE_STATE.stageIndex].challenge);
+    STAGE_STATE.targetText = extractKanaText(STAGE_STATE.stageChallengeTexts[STAGE_STATE.stageIndex].challenge);
     document.getElementById("judgement_when_completed")!.textContent = "";
 
     // Clear the input boxes
