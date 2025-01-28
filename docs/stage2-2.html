@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title>ユニかな！　ステージ 2-1</title>
+    <title>ユニかな！　ステージ 2-2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="audio.js"></script>
@@ -11,8 +11,7 @@
     <script src="ui.js"></script>
 </head>
 
-<body
-    onload="initializeStageChallenge({expectedHexLength: 2, hexPrefix: '30', stageChallengeTexts, nextStagePageName: 'stage2-2'})">
+<body onload="initializeStageChallenge({expectedHexLength: 2, hexPrefix: '30', stageChallengeTexts, nextStagePageName: 'stage2-3'})">
 
     <audio id="bgm" src="stage2-bgm.wav" loop></audio>
 
@@ -21,12 +20,15 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 1, "challenge": "な", "commentary": "今度は「6A」と入力" },
-            { "length": 1, "challenge": "に", "commentary": "今度は「6B」と入力" },
-            { "length": 1, "challenge": "ぬ", "commentary": "今度は「6C」と入力" },
-            { "length": 1, "challenge": "ね", "commentary": "今度は「6D」と入力" },
-            { "length": 1, "challenge": "の", "commentary": "今度は「6E」と入力" },
-            { "length": 1, "challenge": "て", "commentary": "「66」で入力できる" },
+            { "length": 2, "challenge": "{七|なな}", "commentary": "数の１つ" },
+            { "length": 2, "challenge": "{何|なに}", "commentary": "なにぃ～？" },
+            { "length": 2, "challenge": "なぬ", "commentary": "なぬぅ～～？" },
+            { "length": 2, "challenge": "{名|な}ね", "commentary": "姓じゃないからね" },
+            { "length": 2, "challenge": "{ナ|な}{ノ|の}", "commentary": "十億分の１" },
+            { "length": 2, "challenge": "{手|て}に", "commentary": "to the hand" },
+            { "length": 2, "challenge": "{手|て}ね", "commentary": "足じゃないからね" },
+            { "length": 2, "challenge": "{煮|に}て", "commentary": "グツグツ頼んだよ" },
+            { "length": 2, "challenge": "{寝|ね}て", "commentary": "おやすみなさい" },
         ];
     </script>
 
@@ -60,19 +62,22 @@
     <div class="outer-container">
         <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
                 src="logo.png" width="100" alt="ユニかな！"></h1>
-        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 2-1</h2>
+        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 2-2</h2>
         <span id="judgement_when_completed"
             style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
 
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
         <div class="input-container">
-            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(1, 62px);">
+        <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(2, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
-                        type="text" autocomplete="off" size="2" maxlength="2" pattern="6[6A-Ea-e]" id="codepoint0"
-                        autofocus onfocus="UI_STATE.cursoredBox = 0;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="6[6A-Ea-e]" id="codepoint0" autofocus
+                        onfocus="UI_STATE.cursoredBox = 0;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="6[6A-Ea-e]" id="codepoint1"
+                        onfocus="UI_STATE.cursoredBox = 1;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
             </div>
         </div>
     </div>
