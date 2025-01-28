@@ -88,6 +88,12 @@ table.keyboard td.no-entry:active {
     text-transform: uppercase;
 }
 
+.double-digit-codepoint {
+    margin: 2px;
+    max-width: 1.5em;
+    text-transform: uppercase;
+}
+
 .input-container {
     width: 100%;
     display: flex;

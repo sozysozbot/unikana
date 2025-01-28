@@ -11,7 +11,7 @@
     <script src="ui.js"></script>
 </head>
 
-<body onload="initializeStageChallenge({stageChallengeTexts, nextStagePageName: 'stage1-2'})">
+<body onload="initializeStageChallenge({expectedHexLength: 1, hexPrefix: '306', stageChallengeTexts, nextStagePageName: 'stage1-2'})">
 
     <audio id="bgm" src="stage1-bgm.wav" loop></audio>
 
@@ -20,7 +20,7 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 2, "challenge": "{七|なな}", "commentary": "数の1つ" },
+            { "length": 2, "challenge": "{七|なな}", "commentary": "数の１つ" },
             { "length": 2, "challenge": "{何|なに}", "commentary": "疑問詞" },
             { "length": 2, "challenge": "{煮|に}な", "commentary": "グツグツの必要" },
             { "length": 2, "challenge": "{似|に}ぬ", "commentary": "見た目が異なる" },

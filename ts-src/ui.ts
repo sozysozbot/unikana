@@ -1,6 +1,6 @@
 const UI_STATE = { cursoredBox: 0 };
-const STAGE_STATE: { stageIndex: number, stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], targetText: string, nextStagePageName: string }
-    = { stageIndex: 0, stageChallengeTexts: [], targetText: "", nextStagePageName: "" };
+const STAGE_STATE: { hexPrefix: string, expectedHexLength: number, stageIndex: number, stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], targetText: string, nextStagePageName: string }
+    = { stageIndex: 0, stageChallengeTexts: [], targetText: "", nextStagePageName: "", hexPrefix: "", expectedHexLength: 1 };
 
 // get the currently highlighted input element
 function getHighlightedInput(): HTMLInputElement {
@@ -26,8 +26,20 @@ function sync_triggered_from_textinput(i: number) {
     const codepoint = codepointInput.value;
     const char_div = document.getElementById("char" + i)!;
 
-    // Delete offending characters
-    if (!codepointInput.checkValidity()) {
+    if (codepoint === "") {
+        char_div.textContent = "";
+        char_div.classList.add("unfilled-char-cell");
+    } else if (codepointInput.checkValidity()) {
+        char_div.textContent = String.fromCodePoint(parseInt(STAGE_STATE.hexPrefix + codepoint, 16));
+        char_div.classList.remove("unfilled-char-cell");
+
+        // If this completes the codepoint, 
+        if (codepoint.length === STAGE_STATE.expectedHexLength) {
+
+            // move to the next input
+            moveFocusToNextInput();
+        }
+    } else if (codepoint.length === STAGE_STATE.expectedHexLength) {
         if (success) {
             playBeepSound();
             success = false;
@@ -36,19 +48,6 @@ function sync_triggered_from_textinput(i: number) {
         codepointInput.value = "";
         char_div.textContent = "";
         char_div.classList.add("unfilled-char-cell");
-    } else if (codepoint === "") {
-        char_div.textContent = "";
-        char_div.classList.add("unfilled-char-cell");
-    } else {
-        char_div.textContent = String.fromCodePoint(parseInt("306" + codepoint, 16));
-        char_div.classList.remove("unfilled-char-cell");
-
-        // If this completes the codepoint, 
-        if (codepoint.length === 1 /*TODO*/) {
-
-            // move to the next input
-            moveFocusToNextInput();
-        }
     }
 
     if (success) {
@@ -142,7 +141,14 @@ function checkSolution() {
     }
 }
 
-function initializeStageChallenge(o: { stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], nextStagePageName: string }) {
+function initializeStageChallenge(o: {
+    stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[],
+    expectedHexLength: number,
+    nextStagePageName: string,
+    hexPrefix: string,
+}) {
+    STAGE_STATE.hexPrefix = o.hexPrefix;
+    STAGE_STATE.expectedHexLength = o.expectedHexLength;
     STAGE_STATE.nextStagePageName = o.nextStagePageName;
     const stageChallengeElement = document.getElementById("challenge-text")!;
     stageChallengeElement.innerHTML = convertStageToRuby(o.stageChallengeTexts[0].challenge);
@@ -172,7 +178,7 @@ function nextStage() {
     document.getElementById("judgement_when_completed")!.textContent = "";
 
     // Clear the input boxes
-    for (let i = 0; i < STAGE_STATE.targetText.length ; i++) {
+    for (let i = 0; i < STAGE_STATE.targetText.length; i++) {
         const codepointInput = document.getElementById("codepoint" + i)! as HTMLInputElement;
         codepointInput.value = "";
         const char_div = document.getElementById("char" + i)!;
