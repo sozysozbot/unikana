@@ -130,6 +130,8 @@ function initializeStageChallenge(o) {
     stageChallengeElement.innerHTML = convertStageToRuby(o.stageChallengeTexts[0].challenge);
     STAGE_STATE.targetText = extractKanaText(o.stageChallengeTexts[0].challenge);
     STAGE_STATE.stageChallengeTexts = o.stageChallengeTexts;
+    const commentaryElement = document.getElementById("commentary-text");
+    commentaryElement.textContent = STAGE_STATE.stageChallengeTexts[0].commentary || "\u00A0";
 }
 function nextStage() {
     STAGE_STATE.stageIndex++;
@@ -142,6 +144,8 @@ function nextStage() {
     const stageChallengeElement = document.getElementById("challenge-text");
     stageChallengeElement.innerHTML = convertStageToRuby(STAGE_STATE.stageChallengeTexts[STAGE_STATE.stageIndex].challenge);
     STAGE_STATE.targetText = extractKanaText(STAGE_STATE.stageChallengeTexts[STAGE_STATE.stageIndex].challenge);
+    const commentaryElement = document.getElementById("commentary-text");
+    commentaryElement.textContent = STAGE_STATE.stageChallengeTexts[STAGE_STATE.stageIndex].commentary;
     document.getElementById("judgement_when_completed").textContent = "";
     // Clear the input boxes
     for (let i = 0; i < STAGE_STATE.targetText.length; i++) {
