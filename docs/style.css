@@ -92,3 +92,7 @@ table.keyboard td.no-entry:active {
     width: 100%;
     display: flex;
 }
+
+#commentary-text{
+    font-weight: bold;
+}
