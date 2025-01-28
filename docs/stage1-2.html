@@ -71,13 +71,13 @@
                 <div id="char2" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
+                        onfocus="UI_STATE.cursoredBox = 0;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
+                        onfocus="UI_STATE.cursoredBox = 1;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint2"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
+                        onfocus="UI_STATE.cursoredBox = 2;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
             </div>
         </div>
     </div>
