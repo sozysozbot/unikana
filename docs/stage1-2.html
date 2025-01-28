@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title>ユニかな！　ステージ 1-1</title>
+    <title>ユニかな！　ステージ 1-2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="audio.js"></script>
@@ -11,7 +11,7 @@
     <script src="ui.js"></script>
 </head>
 
-<body onload="initializeStageChallenge({stageChallengeTexts, nextStagePageName: 'stage1-2'})">
+<body onload="initializeStageChallenge({stageChallengeTexts, nextStagePageName: 'stage1-3'})">
 
     <audio id="bgm" src="stage1-bgm.wav" loop></audio>
 
@@ -20,15 +20,12 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 2, "challenge": "{七|なな}", "commentary": "数の1つ" },
-            { "length": 2, "challenge": "{何|なに}", "commentary": "疑問詞" },
-            { "length": 2, "challenge": "{煮|に}な", "commentary": "グツグツの必要" },
-            { "length": 2, "challenge": "{似|に}ぬ", "commentary": "見た目が異なる" },
-            { "length": 2, "challenge": "{布|ぬの}", "commentary": "着ましょう" },
-            { "length": 2, "challenge": "{寝|ね}ぬ", "commentary": "徹夜" },
-            { "length": 2, "challenge": "{寝|ね}な", "commentary": "明日は朝早い" },
-            { "length": 2, "challenge": "{菜|な}の", "commentary": "of vegetables" },
-            { "length": 2, "challenge": "{野|の}に", "commentary": "in the field" },
+            { "length": 3, "challenge": "{何|なに}に", "commentary": "疑問" },
+            { "length": 3, "challenge": "{布|ぬの}の", "commentary": "" },
+            { "length": 3, "challenge": "なのに", "commentary": "逆接" },
+            { "length": 3, "challenge": "{七|なな}ね", "commentary": "" },
+            { "length": 3, "challenge": "{野|の}に{菜|な}", "commentary": "豊かな自然" },
+            { "length": 3, "challenge": "{煮|に}ぬ{菜|な}", "commentary": "サラダとか" },
         ];
     </script>
 
@@ -62,21 +59,25 @@
     <div class="outer-container">
         <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
                 src="logo.png" width="100" alt="ユニかな！"></h1>
-        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 1-1</h2>
+        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 1-2</h2>
         <span id="judgement_when_completed"
             style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
 
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div class="input-container">
-        <div class="grid" style="height: 80px; margin: 50px auto 0 auto; grid-template-columns: repeat(2, 62px);">
+            <div class="grid" style="height: 80px; margin: 50px auto 0 auto; grid-template-columns: repeat(3, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char2" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
                         oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1"
                         oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
+                        type="text" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint2"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
             </div>
         </div>
     </div>

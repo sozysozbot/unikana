@@ -12,7 +12,7 @@ function getHighlightedInput(): HTMLInputElement {
 }
 
 function moveFocusToNextInput() {
-    UI_STATE.cursoredBox = (UI_STATE.cursoredBox + 1) % 2 /* TODO */;
+    UI_STATE.cursoredBox = (UI_STATE.cursoredBox + 1) % STAGE_STATE.targetText.length;
     const nextInput = document.getElementById("codepoint" + UI_STATE.cursoredBox)! as HTMLInputElement;
     nextInput.focus();
     nextInput.setSelectionRange(0, 0);
@@ -80,7 +80,7 @@ function insertAtCursor(textToInsert: string) {
 function syncAll_triggered_from_custom_keyboard(previousValue: string) {
     let success = true;
     document.getElementById("judgement_when_completed")!.textContent = "";
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < STAGE_STATE.targetText.length; i++) {
         const codepointInput = document.getElementById("codepoint" + i)! as HTMLInputElement;
         const codepoint = codepointInput.value;
         const char_div = document.getElementById("char" + i)!;
@@ -118,11 +118,21 @@ function syncAll_triggered_from_custom_keyboard(previousValue: string) {
 
 
 function checkSolution() {
-    const char0 = document.getElementById("char0")!.textContent ?? "";
-    const char1 = document.getElementById("char1")!.textContent ?? "";
+    const len = STAGE_STATE.targetText.length;
+    for (let i = 0; i < len; i++) {
+        if (document.getElementById("char" + i)!.textContent === "") {
+            return;
+        }
+    }
 
-    if (char0 + char1 === STAGE_STATE.targetText) {
+    let chars = "";
+    for (let i = 0; i < len; i++) {
+        chars += document.getElementById("char" + i)!.textContent;
+    }
+
+    if (chars === STAGE_STATE.targetText) {
         document.getElementById("judgement_when_completed")!.textContent = "✅";
+        UI_STATE.cursoredBox = 0;
         setTimeout(() => {
             playSuccessSound();
             setTimeout(() => {
@@ -155,7 +165,7 @@ function nextStage() {
     document.getElementById("judgement_when_completed")!.textContent = "";
 
     // Clear the input boxes
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < STAGE_STATE.targetText.length ; i++) {
         const codepointInput = document.getElementById("codepoint" + i)! as HTMLInputElement;
         codepointInput.value = "";
         const char_div = document.getElementById("char" + i)!;

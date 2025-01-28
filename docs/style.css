@@ -45,7 +45,6 @@ table.keyboard td.no-entry:active {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 62px);
     grid-template-rows: repeat(2, 62px);
     gap: 0;
 }
