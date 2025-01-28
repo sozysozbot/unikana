@@ -56,7 +56,7 @@ function insertAtCursor(textToInsert) {
     inputElement.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
     inputElement.setSelectionRange(start + textToInsert.length, start + textToInsert.length);
     // If this completes the codepoint, 
-    if (inputElement.value.length === 1 /*TODO*/) {
+    if (inputElement.value.length === STAGE_STATE.expectedHexLength) {
         // move to the next input
         moveFocusToNextInput();
     }
@@ -70,30 +70,58 @@ function syncAll_triggered_from_custom_keyboard(previousValue) {
         const codepointInput = document.getElementById("codepoint" + i);
         const codepoint = codepointInput.value;
         const char_div = document.getElementById("char" + i);
-        // Delete offending characters
-        if (!codepointInput.checkValidity()) {
-            if (success) {
-                playBeepSound();
-                success = false;
+        if (STAGE_STATE.expectedHexLength === 1) {
+            // Delete offending characters
+            if (!codepointInput.checkValidity()) {
+                if (success) {
+                    playBeepSound();
+                    success = false;
+                }
+                if (previousValue === undefined) {
+                    codepointInput.value = "";
+                    char_div.textContent = "";
+                    char_div.classList.add("unfilled-char-cell");
+                }
+                else {
+                    codepointInput.value = previousValue;
+                    char_div.textContent = String.fromCodePoint(parseInt(STAGE_STATE.hexPrefix + previousValue, 16));
+                    char_div.classList.remove("unfilled-char-cell");
+                }
             }
-            if (previousValue === undefined) {
-                codepointInput.value = "";
+            else if (codepoint === "") {
                 char_div.textContent = "";
                 char_div.classList.add("unfilled-char-cell");
             }
             else {
-                codepointInput.value = previousValue;
-                char_div.textContent = String.fromCodePoint(parseInt("306" + previousValue, 16));
+                char_div.textContent = String.fromCodePoint(parseInt(STAGE_STATE.hexPrefix + codepoint, 16));
                 char_div.classList.remove("unfilled-char-cell");
             }
         }
-        else if (codepoint === "") {
-            char_div.textContent = "";
-            char_div.classList.add("unfilled-char-cell");
-        }
         else {
-            char_div.textContent = String.fromCodePoint(parseInt("306" + codepoint, 16));
-            char_div.classList.remove("unfilled-char-cell");
+            if (codepoint === "") {
+                char_div.textContent = "";
+                char_div.classList.add("unfilled-char-cell");
+            }
+            else if (codepointInput.checkValidity()) {
+                char_div.textContent = String.fromCodePoint(parseInt(STAGE_STATE.hexPrefix + codepoint, 16));
+                char_div.classList.remove("unfilled-char-cell");
+            }
+            else if (codepoint.length === STAGE_STATE.expectedHexLength) {
+                if (success) {
+                    playBeepSound();
+                    success = false;
+                }
+                if (previousValue === undefined) {
+                    codepointInput.value = "";
+                    char_div.textContent = "";
+                    char_div.classList.add("unfilled-char-cell");
+                }
+                else {
+                    codepointInput.value = previousValue;
+                    char_div.textContent = String.fromCodePoint(parseInt(STAGE_STATE.hexPrefix + previousValue, 16));
+                    char_div.classList.remove("unfilled-char-cell");
+                }
+            }
         }
     }
     if (success) {
