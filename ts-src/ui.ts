@@ -117,6 +117,7 @@ function syncAll_triggered_from_custom_keyboard(previousValue: string) {
 let stageIndex = 0;
 let __stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[] = [];
 let targetText: string = "";
+let nextStagePageName: string = "";
 
 function checkSolution() {
     const char0 = document.getElementById("char0")!.textContent ?? "";
@@ -133,24 +134,20 @@ function checkSolution() {
     }
 }
 
-function initializeStageChallenge(stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[]) {
+function initializeStageChallenge(o: { stageChallengeTexts: { "length": number, "challenge": string, "commentary": string }[], nextStagePageName: string }) {
+    nextStagePageName = o.nextStagePageName;
     const stageChallengeElement = document.getElementById("challenge-text")!;
-    stageChallengeElement.innerHTML = convertStageToRuby(stageChallengeTexts[0].challenge);
-    targetText = extractKanaText(stageChallengeTexts[0].challenge);
-    __stageChallengeTexts = stageChallengeTexts;
+    stageChallengeElement.innerHTML = convertStageToRuby(o.stageChallengeTexts[0].challenge);
+    targetText = extractKanaText(o.stageChallengeTexts[0].challenge);
+    __stageChallengeTexts = o.stageChallengeTexts;
 }
 
 function nextStage() {
     stageIndex++;
     if (stageIndex >= __stageChallengeTexts.length) {
-        alert("おめでとうございます！全ステージクリアです！");
-        throw new Error("全ステージクリア");
-    }
-
-    // Currently, limit the stage so that the length is always 2
-    if (__stageChallengeTexts[stageIndex].length !== 2) {
-        alert("おめでとうございます！全ステージクリアです！");
-        throw new Error("全ステージクリア");
+        alert("ステージクリア！");
+        location.href = `./${nextStagePageName}.html`;
+        throw new Error("ステージクリア");
     }
 
     // Update the stage challenge text
