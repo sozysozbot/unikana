@@ -11,7 +11,7 @@
     <script src="ui.js"></script>
 </head>
 
-<body onload="initializeStageChallenge({expectedHexLength: 1, hexPrefix: '306', stageChallengeTexts, nextStagePageName: 'index'})">
+<body onload="initializeStageChallenge({expectedHexLength: 1, hexPrefix: '306', stageChallengeTexts, nextStagePageName: 'stage1-6'})">
 
     <audio id="bgm" src="stage1-bgm.wav" loop></audio>
 
@@ -20,11 +20,11 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 6, "challenge": "{何|なに}{何|なに}{何|なに}", "commentary": "どうしたの" },
-            { "length": 6, "challenge": "{布|ぬの}なのにね", "commentary": "紙じゃないのに" },
-            { "length": 6, "challenge": "{菜|な}に{似|に}ぬ{布|ぬの}", "commentary": "肉に似てる" },
-            { "length": 6, "challenge": "{煮|に}ぬ{根|ね}なのに", "commentary": "生の方が美味い" },
-            { "length": 6, "challenge": "{２|に}{ナ|な}{ノ|の}の{布|ぬの}", "commentary": "それ本当に布？" }
+            { "length": 5, "challenge": "{布|ぬの}に{似|に}ぬ", "commentary": "不織布マスク" },
+            { "length": 5, "challenge": "{七|なな}なのに", "commentary": "スロットは外れ" },
+            { "length": 5, "challenge": "{寝|ね}ぬのにな", "commentary": "どうせ徹夜よ" },
+            { "length": 5, "challenge": "{奈|な}{々|な}のなの", "commentary": "私のお人形！" },
+            { "length": 5, "challenge": "{寧|ね}{々|ね}の{布|ぬの}", "commentary": "私のお洋服" },
         ];
     </script>
 
@@ -65,13 +65,12 @@
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
         <div class="input-container">
-            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(6, 62px);">
+            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(5, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char2" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char3" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char4" class="grid-char-cell unfilled-char-cell"></div>
-                <div id="char5" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
                         onfocus="UI_STATE.cursoredBox = 0;"
@@ -92,10 +91,6 @@
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint4"
                         onfocus="UI_STATE.cursoredBox = 4;"
                         oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(4)"></div>
-                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
-                        type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint5"
-                        onfocus="UI_STATE.cursoredBox = 5;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(5)"></div>
             </div>
         </div>
     </div>

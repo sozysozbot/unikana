@@ -20,11 +20,12 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 5, "challenge": "{布|ぬの}に{似|に}ぬ", "commentary": "不織布マスク" },
-            { "length": 5, "challenge": "{七|なな}なのに", "commentary": "スロットは外れ" },
-            { "length": 5, "challenge": "{寝|ね}ぬのにな", "commentary": "どうせ徹夜よ" },
-            { "length": 5, "challenge": "{奈|な}{々|な}のなの", "commentary": "私のお人形！" },
-            { "length": 5, "challenge": "{寧|ね}{々|ね}の{布|ぬの}", "commentary": "私のお洋服" },
+            { "length": 4, "challenge": "{名|な}なのに", "commentary": "実名なんだけど" },
+            { "length": 4, "challenge": "{寝|ね}ぬのに", "commentary": "昼間に寝すぎた" },
+            { "length": 4, "challenge": "{根|ね}の{菜|な}ね", "commentary": "ゴボウとかね" },
+            { "length": 4, "challenge": "{似|に}ぬのに", "commentary": "完全に別物だよ" },
+            { "length": 4, "challenge": "{野|の}に{寝|ね}ぬ", "commentary": "ベッドで寝よう" },
+            { "length": 4, "challenge": "{奈|な}{々|な}なの", "commentary": "自己紹介" },
         ];
     </script>
 
@@ -65,32 +66,23 @@
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
         <div class="input-container">
-            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(5, 62px);">
+            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(4, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char2" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char3" class="grid-char-cell unfilled-char-cell"></div>
-                <div id="char4" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
-                        onfocus="UI_STATE.cursoredBox = 0;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
+                        onfocus="UI_STATE.cursoredBox = 0;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1"
-                        onfocus="UI_STATE.cursoredBox = 1;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
+                        onfocus="UI_STATE.cursoredBox = 1;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint2"
-                        onfocus="UI_STATE.cursoredBox = 2;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
+                        onfocus="UI_STATE.cursoredBox = 2;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint3"
-                        onfocus="UI_STATE.cursoredBox = 3;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(3)"></div>
-                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
-                        type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint4"
-                        onfocus="UI_STATE.cursoredBox = 4;"
-                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(4)"></div>
+                        onfocus="UI_STATE.cursoredBox = 3;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(3)"></div>
             </div>
         </div>
     </div>

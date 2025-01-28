@@ -20,15 +20,11 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 2, "challenge": "{七|なな}", "commentary": "数の１つ" },
-            { "length": 2, "challenge": "{何|なに}", "commentary": "疑問詞" },
-            { "length": 2, "challenge": "{煮|に}な", "commentary": "グツグツの必要" },
-            { "length": 2, "challenge": "{似|に}ぬ", "commentary": "見た目が異なる" },
-            { "length": 2, "challenge": "{布|ぬの}", "commentary": "着ましょう" },
-            { "length": 2, "challenge": "{寝|ね}ぬ", "commentary": "徹夜" },
-            { "length": 2, "challenge": "{寝|ね}な", "commentary": "明日は朝早い" },
-            { "length": 2, "challenge": "{菜|な}の", "commentary": "of vegetables" },
-            { "length": 2, "challenge": "{野|の}に", "commentary": "in the field" },
+            { "length": 1, "challenge": "な", "commentary": "「A」と入力せよ" },
+            { "length": 1, "challenge": "に", "commentary": "「B」と入力せよ" },
+            { "length": 1, "challenge": "ぬ", "commentary": "「C」と入力せよ" },
+            { "length": 1, "challenge": "ね", "commentary": "「D」と入力せよ" },
+            { "length": 1, "challenge": "の", "commentary": "「E」と入力せよ" },
         ];
     </script>
 
@@ -69,15 +65,11 @@
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
         <div class="input-container">
-        <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(2, 62px);">
+        <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(1, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
-                <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
                         type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint0" autofocus
                         onfocus="UI_STATE.cursoredBox = 0;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
-                <div class="grid-unicode-cell"><span class="immutable">U+306</span><input class="single-digit-codepoint"
-                        type="text" autocomplete="off" size="1" maxlength="1" pattern="[A-Ea-e]" id="codepoint1"
-                        onfocus="UI_STATE.cursoredBox = 1;" oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
             </div>
         </div>
     </div>
