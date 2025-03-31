@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-    <title>ユニかな！　ステージ 3-3</title>
+    <title>ユニかな！　ステージ 3-5</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <script src="audio.js"></script>
@@ -12,7 +12,7 @@
 </head>
 
 <body
-    onload="initializeStageChallenge({expectedHexLength: 2, hexPrefix: '30', stageChallengeTexts, nextStagePageName: 'stage3-4'})">
+    onload="initializeStageChallenge({expectedHexLength: 2, hexPrefix: '30', stageChallengeTexts, nextStagePageName: 'index'})">
 
     <audio id="bgm" src="stage3-bgm.wav" loop></audio>
 
@@ -21,14 +21,11 @@
 
     <script>
         const stageChallengeTexts = [
-            { "length": 3, "challenge": "{現|うつつ}", "commentary": "ぬかすやつ"},
-            { "length": 3, "challenge": "{イ|い}{テ|て}{テ|て}", "commentary": "タンスにぶつけた"},
-            { "length": 3, "challenge": "{打|う}てて", "commentary": "ホームラン狙えてるよ"},
-            { "length": 3, "challenge": "{筒|つつ}{井|い}", "commentary": "人名"},
-            { "length": 3, "challenge": "{突|つ}いて", "commentary": "グサッ"},
-            { "length": 3, "challenge": "{胃|い}{痛|つう}", "commentary": "お大事に"},
-            { "length": 3, "challenge": "{浮|う}いて", "commentary": "floating..."},
-            { "length": 3, "challenge": "{打|う}つ{手|て}", "commentary": "ないがち"},
+            { "length": 5, "challenge": "{良|い}い{手|て}{打|う}つ", "commentary": "7手詰みです"},
+            { "length": 5, "challenge": "いつ{打|う}つ{手|て}", "commentary": "中盤戦かなぁ"},
+            { "length": 5, "challenge": "{鉄|てつ}{浮|う}いて", "commentary": "願いよとどけ"},
+            { "length": 5, "challenge": "つついてて", "commentary": "キツツキコンコン"},
+            { "length": 5, "challenge": "{居|い}{着|つ}いてて", "commentary": "ﾈｺﾁｬﾝ"},
         ];
     </script>
 
@@ -62,29 +59,39 @@
     <div class="outer-container">
         <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
                 src="logo.png" width="100" alt="ユニかな！"></h1>
-        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 3-3</h2>
+        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 3-5</h2>
         <span id="judgement_when_completed"
             style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
 
         <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
         <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
         <div class="input-container">
-            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(3, 62px);">
+            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(5, 62px);">
                 <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
                 <div id="char2" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char3" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char4" class="grid-char-cell unfilled-char-cell"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
                         type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint0"
                         autofocus onfocus="UI_STATE.cursoredBox = 0;"
                         oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
                         type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint1"
-                        autofocus onfocus="UI_STATE.cursoredBox = 1;"
+                        onfocus="UI_STATE.cursoredBox = 1;"
                         oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
                 <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
-                    type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint2"
-                    autofocus onfocus="UI_STATE.cursoredBox = 2;"
-                    oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint2"
+                        onfocus="UI_STATE.cursoredBox = 2;"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(2)"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint3"
+                        onfocus="UI_STATE.cursoredBox = 3;"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(3)"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="[46][46]" id="codepoint4"
+                        onfocus="UI_STATE.cursoredBox = 4;"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(4)"></div>
             </div>
         </div>
     </div>
