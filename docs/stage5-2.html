@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title>ユニかな！　ステージ 5-2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="audio.js"></script>
+    <script src="parse_stage.js"></script>
+    <script src="ui.js"></script>
+</head>
+
+<body
+    onload="initializeStageChallenge({expectedHexLength: 2, hexPrefix: '30', stageChallengeTexts, nextStagePageName: 'stage5-3'})">
+
+    <audio id="bgm" src="stage5-bgm.wav" loop></audio>
+
+    <button onclick="startBGM()">Start BGM</button>
+    <button onclick="stopBGM()">Stop BGM</button>
+
+    <script>
+        const stageChallengeTexts = [
+            {"length":"2","challenge":"{穴|あな}","commentary":"人を呪わば"},
+            {"length":"2","challenge":"{兄|あに}","commentary":"お兄ちゃん"},
+            {"length":"2","challenge":"あの","commentary":"ちょっとよろしいですか"},
+            {"length":"2","challenge":"{犬|いぬ}","commentary":"わんこ"},
+            {"length":"2","challenge":"{得|え}て","commentary":"get しよう"},
+            {"length":"2","challenge":"{鬼|おに}","commentary":"鬼滅の刃未履修です"},
+            {"length":"2","challenge":"{杖|つえ}","commentary":"転ばぬ先の"},
+            {"length":"2","challenge":"{綱|つな}","commentary":"運動会で大活躍"},
+            {"length":"2","challenge":"{無|な}い","commentary":"ありません"},
+            {"length":"2","challenge":"{二|に}{位|い}","commentary":"銀賞"},
+            {"length":"2","challenge":"{縫|ぬ}う","commentary":"布か傷口か"},
+            {"length":"2","challenge":"{鵺|ぬえ}","commentary":"妖怪の一種らしい"},
+            {"length":"2","challenge":"ねえ","commentary":"ねえってば"},
+        ];
+    </script>
+
+    <table class="keyboard">
+        <tr>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('2')">2</td>
+            <td class="no-entry" onclick="beepSound()">⛔</td>
+        </tr>
+        <tr>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('4')">4</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('6')">6</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+        </tr>
+        <tr>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('8')">8</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('A')">A</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('B')">B</td>
+        </tr>
+        <tr>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('C')">C</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('D')">D</td>
+            <td onclick="startBGMIfNotPlaying(); insertAtCursor('E')">E</td>
+            <td class="no-entry" onclick="startBGMIfNotPlaying(); beepSound()">⛔</td>
+        </tr>
+    </table>
+
+    <div class="outer-container">
+        <h1 style="position: absolute; font-size: 15px; right: 0px; margin-top: 0; margin-right: 3px"><img
+                src="logo.png" width="100" alt="ユニかな！"></h1>
+        <h2 style="position: absolute; font-size: 15px; margin-top: 0;margin-left: 3px">ステージ 5-2</h2>
+        <span id="judgement_when_completed"
+            style="position: absolute; font-size: 45px; right: 0px; bottom: 30px;"></span>
+
+        <div id="challenge-text" style="text-align: center; font-size: 40px; margin-top: 10px;"></div>
+        <div id="commentary-text" style="text-align: center; font-size: 16px; margin-top: -2px; color: #55a6c3"></div>
+        <div class="input-container">
+            <div class="grid" style="height: 80px; margin: 25px auto 0 auto; grid-template-columns: repeat(2, 62px);">
+                <div id="char0" class="grid-char-cell unfilled-char-cell"></div>
+                <div id="char1" class="grid-char-cell unfilled-char-cell"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="4[2468Aa]|6[46A-Ea-e]" id="codepoint0"
+                        autofocus onfocus="UI_STATE.cursoredBox = 0;"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(0)"></div>
+                <div class="grid-unicode-cell"><span class="immutable">U+30</span><input class="double-digit-codepoint"
+                        type="text" autocomplete="off" size="2" maxlength="2" pattern="4[2468Aa]|6[46A-Ea-e]" id="codepoint1"
+                        autofocus onfocus="UI_STATE.cursoredBox = 1;"
+                        oninput="startBGMIfNotPlaying(); sync_triggered_from_textinput(1)"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <table>
+        <tr>
+            <td>42</td>
+            <td>44</td>
+            <td>46</td>
+            <td>48</td>
+            <td>4A</td>
+            <td style="background-color: gray;">&nbsp;</td>
+            <td>64</td>
+            <td>66</td>
+        </tr>
+        <tr>
+            <td>あ</td>
+            <td>い</td>
+            <td>う</td>
+            <td>え</td>
+            <td>お</td>
+            <td style="background-color: gray;">&nbsp;</td>
+            <td>つ</td>
+            <td>て</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>6A</td>
+            <td>6B</td>
+            <td>6C</td>
+            <td>6D</td>
+            <td>6E</td>
+        </tr>
+        <tr>
+            <td>な</td>
+            <td>に</td>
+            <td>ぬ</td>
+            <td>ね</td>
+            <td>の</td>
+        </tr>
+    </table>
+
+    <small>作者: <a href="https://twitter.com/hsjoihs">hsjoihs</a><br>
+        BGM は <a href="https://instachord.com/">InstaChord</a> および <a
+            href="https://www.ah-soft.com/synth-v/teto/">Synthesizer V Studio Pro の重音テト</a>で製作しました</small>
+</body>
